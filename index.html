@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call Break Score Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+    <div class="max-w-2xl mx-auto p-4">
+        <h1 class="text-3xl font-bold text-center mb-6 text-indigo-600">Call Break Score Tracker</h1>
+        <div id="settings" class="mb-6 text-center">
+            <input type="number" id="total-rounds" placeholder="Enter total rounds" min="1"
+                class="border rounded px-4 py-2 mb-2 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <button onclick="startGame()"
+                class="w-full bg-indigo-500 text-white py-2 px-4 rounded shadow-md hover:bg-indigo-600 transition-all duration-300">
+                Start Game
+            </button>
+        </div>
+        <div id="player-input" class="mb-6 text-center hidden">
+            <input type="text" id="player-name" placeholder="Enter player name"
+                class="border rounded px-4 py-2 mb-2 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <button onclick="addPlayer()"
+                class="w-full bg-green-500 text-white py-2 px-4 rounded shadow-md hover:bg-green-600 transition-all duration-300">
+                Add Player
+            </button>
+            <!-- New button to hide the player input field -->
+            <button onclick="hidePlayerInput()" id="finalize-players-button"
+                class="w-full bg-gray-500 text-white py-2 px-4 rounded shadow-md hover:bg-gray-600 transition-all duration-300 mt-2">
+                Finalize Players
+            </button>
+        </div>
+
+
+        <div class="overflow-x-auto">
+            <table id="scoreboard" class="min-w-full bg-white shadow-md rounded-lg overflow-hidden hidden">
+                <thead class="bg-indigo-500 text-white">
+                    <tr>
+                        <th class="py-2 px-4 text-left rank-column hidden">Rank</th>
+                        <!-- Added rank-column class and hidden class -->
+                        <th class="py-2 px-4 text-left">Player</th>
+                        <th class="py-2 px-4 text-left">Total</th>
+                    </tr>
+                </thead>
+                <tbody id="players-list">
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-center mt-6">
+            <button id="next-round-button" onclick="nextRound()"
+                class="w-full bg-yellow-500 text-white py-2 px-4 rounded shadow-md hover:bg-yellow-600 transition-all duration-300 hidden">
+                Next Round
+            </button>
+        </div>
+        <br><br>
+        <button id="new-game-button"
+            class="w-full bg-red-500 text-white py-2 px-4 rounded shadow-md hover:bg-red-600 transition-all duration-300 hidden">
+            New Game
+        </button>
+        <div id="score-modal" class="fixed inset-0 bg-gray-600 bg-opacity-75 flex justify-center items-center hidden">
+            <div class="bg-white rounded-lg p-6 w-11/12 max-w-md relative">
+                <!-- Larger cross in the top-right corner -->
+                <button id="score-modal-cancel"
+                    class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-2xl font-bold">
+                    &times;
+                </button>
+                <h2 id="score-modal-title" class="text-xl font-bold mb-4"></h2>
+                <input id="score-modal-input" type="number"
+                    class="border rounded w-full p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        
+                <button id="score-modal-submit"
+                    class="bg-green-500 text-white py-2 px-4 rounded shadow-md hover:bg-green-600 transition-all duration-300 w-full">
+                    Submit
+                </button>
+            </div>
+        </div>
+
+
+
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
